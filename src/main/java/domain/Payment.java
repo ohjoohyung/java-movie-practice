@@ -9,6 +9,10 @@ public class Payment {
     private static final int ZERO = 0;
     private static final int CREDIT_CARD = 1;
     private static final int CASH = 2;
+    private static final double CARD_DISCOUNT = 0.95;
+    private static final double CASH_DISCOUNT = 0.98;
+
+
     private static final String POINT_RANGE_ERROR = "[ERROR] 포인트가 0보다 작거나 금액보다 큽니다.";
 
 
@@ -22,9 +26,13 @@ public class Payment {
         payByType(paymentType, moviePrice - point);
     }
 
-    private static void payByType(int paymentType, int price) {
+    private static void payByType(int paymentType, int totalPrice) {
         if (paymentType == CREDIT_CARD) {
-
+            OutputView.printTotalPrice((int)(totalPrice * CARD_DISCOUNT));
+            return;
+        }
+        if (paymentType == CASH) {
+            OutputView.printTotalPrice((int)(totalPrice * CASH_DISCOUNT));
         }
     }
 }
