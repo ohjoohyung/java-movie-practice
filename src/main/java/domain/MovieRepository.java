@@ -6,6 +6,7 @@ import java.util.List;
 import static utils.DateTimeUtils.createDateTime;
 
 public class MovieRepository {
+    private static final String NOT_EXIST_MOVIE_ID_ERROR = "[ERROR] 해당 번호의 영화가 존재하지 않습니다.";
     private static List<Movie> movies = new ArrayList<>();
 
     static {
@@ -50,5 +51,14 @@ public class MovieRepository {
             }
         }
         return false;
+    }
+
+    public static Movie getMovieByMovieId(int movieId) {
+        for (Movie movie : movies) {
+            if (movie.isMovieId(movieId)) {
+                return movie;
+            }
+        }
+        throw new IllegalArgumentException(NOT_EXIST_MOVIE_ID_ERROR);
     }
 }

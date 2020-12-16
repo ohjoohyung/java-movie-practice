@@ -8,6 +8,9 @@ import java.util.List;
 
 public class Movie {
     private static final String ALL_PLAY_SCHEDULE_CAPACITY_ZERO_ERROR = "[ERROR] 해당 영화의 예약가능 자리가 없습니다.";
+    private static final String INDEX_RANGE_ERROR = "[ERROR] 영화 시간표 순서를 벗어났습니다.";
+    private static final int MIN_INDEX = 1;
+
     private static final int ZERO = 0;
     private static final char NEW_LINE = '\n';
 
@@ -31,6 +34,13 @@ public class Movie {
     public boolean isMovieId(int movieId) {
         return this.id == movieId;
     }
+
+    public void checkPlayScheduleIndex(int index) {
+        if (index < MIN_INDEX || index > playSchedules.size()) {
+            throw new IllegalArgumentException(INDEX_RANGE_ERROR);
+        }
+    }
+
 
     public void checkPlayScheduleCapacity() {
         int playScheduleCount = playSchedules.size();

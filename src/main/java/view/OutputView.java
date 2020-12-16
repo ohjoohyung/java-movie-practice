@@ -11,12 +11,7 @@ public class OutputView {
         }
     }
 
-    public static void printMovieByMovieId(List<Movie> movies, int movieId) {
-        for (Movie movie : movies) {
-            if (movie.isMovieId(movieId)) {
-                System.out.println(movie);
-                return;
-            }
-        }
+    public static void printMovie(Movie movie) {
+        System.out.println(movie);
     }
 }

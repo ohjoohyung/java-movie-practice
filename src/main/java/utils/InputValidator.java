@@ -11,9 +11,9 @@ public class InputValidator {
 
     }
 
-    public static int validateInteger(String movieId) {
+    public static int validateInteger(String number) {
         try {
-            return Integer.parseInt(movieId);
+            return Integer.parseInt(number);
         }catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(INCORRECT_NUMBER_ERROR);
         }

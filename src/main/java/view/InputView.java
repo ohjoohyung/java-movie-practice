@@ -1,5 +1,7 @@
 package view;
 
+import domain.Movie;
+import domain.MovieRepository;
 import domain.MovieService;
 import utils.InputValidator;
 
@@ -8,17 +10,32 @@ import java.util.Scanner;
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
     private static final String INPUT_MOVIE_ID_MESSAGE = "## 예약할 영화를 선택하세요.";
+    private static final String INPUT_MOVIE_TIME_INDEX_MESSAGE = "## 예약할 시간표를 선택하세요. (첫번째 상영 시간이 1번)";
 
 
-    public static int inputMovieId() {
+    public static Movie inputMovieId() {
         try {
             System.out.println(INPUT_MOVIE_ID_MESSAGE);
-            int moveId = InputValidator.validateInteger(scanner.nextLine());
-            MovieService.validateMovieId(moveId);
-            return moveId;
+            int movieId = InputValidator.validateInteger(scanner.nextLine());
+            MovieService.validateMovieId(movieId);
+            return MovieRepository.getMovieByMovieId(movieId);
         }catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputMovieId();
         }
     }
+
+    public static int inputMovieTimeIndex(Movie movie) {
+        try {
+            System.out.println(INPUT_MOVIE_TIME_INDEX_MESSAGE);
+            int movieIndex = InputValidator.validateInteger(scanner.nextLine());
+            movie.checkPlayScheduleIndex(movieIndex);
+            return movieIndex;
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputMovieTimeIndex(movie);
+        }
+    }
+
+    
 }
