@@ -41,6 +41,11 @@ public class Movie {
         }
     }
 
+    public void checkPlayScheduleCapacityByIndex(int index, int personnel) {
+        PlaySchedule playSchedule = playSchedules.get(index - 1);
+        playSchedule.checkCapacityRange(personnel);
+    }
+
 
     public void checkPlayScheduleCapacity() {
         int playScheduleCount = playSchedules.size();

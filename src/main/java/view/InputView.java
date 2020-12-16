@@ -11,7 +11,7 @@ public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
     private static final String INPUT_MOVIE_ID_MESSAGE = "## 예약할 영화를 선택하세요.";
     private static final String INPUT_MOVIE_TIME_INDEX_MESSAGE = "## 예약할 시간표를 선택하세요. (첫번째 상영 시간이 1번)";
-
+    private static final String INPUT_PERSONNEL_MESSAGE = "## 예약할 인원을 입력하세요.";
 
     public static Movie inputMovieId() {
         try {
@@ -37,5 +37,18 @@ public class InputView {
         }
     }
 
-    
+    public static int inputPersonnel(Movie movie, int index) {
+        try {
+            System.out.println(INPUT_PERSONNEL_MESSAGE);
+            int personnel = InputValidator.validateInteger(scanner.nextLine());
+            movie.checkPlayScheduleCapacityByIndex(index, personnel);
+            return personnel;
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputPersonnel(movie, index);
+        }
+
+    }
+
+
 }

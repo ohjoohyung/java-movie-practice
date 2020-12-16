@@ -1,7 +1,7 @@
 package utils;
 
 public class InputValidator {
-    private static final String INCORRECT_NUMBER_ERROR = "[ERROR] 영화 번호로 숫자를 입력해주세요.";
+    private static final String INCORRECT_NUMBER_ERROR = "[ERROR] 숫자를 입력해주세요.";
 
     private InputValidator() {
 

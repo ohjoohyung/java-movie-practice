@@ -21,6 +21,7 @@ public class MovieApplication {
         Movie movie = InputView.inputMovieId();
         OutputView.printMovie(movie);
         int movieIndex = InputView.inputMovieTimeIndex(movie);
+        int personnel = InputView.inputPersonnel(movie, movieIndex);
 
     }
 
