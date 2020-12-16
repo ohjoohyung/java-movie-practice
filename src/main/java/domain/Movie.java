@@ -63,6 +63,15 @@ public class Movie {
         return price * personnel;
     }
 
+    public String getMovieInfo(int movieTimeIndex, int personnel) {
+        return id + " - " + name + ", " + price + "원" + NEW_LINE
+                + playSchedules.get(movieTimeIndex - 1)
+                + "예약 인원: " + personnel+ "명" + NEW_LINE;
+    }
+
+
+
+
 
     @Override
     public String toString() {

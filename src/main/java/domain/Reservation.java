@@ -28,4 +28,9 @@ public class Reservation {
             throw new IllegalArgumentException(POINT_RANGE_ERROR);
         }
     }
+
+    @Override
+    public String toString() {
+        return movie.getMovieInfo(movieTimeIndex, personnel);
+    }
 }

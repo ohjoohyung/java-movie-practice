@@ -56,8 +56,7 @@ public class InputView {
     public static int inputPaymentOrReserve() {
         try {
             System.out.println(INPUT_PAYMENT_OR_RESERVE_MESSAGE);
-            int menuNumber = InputValidator.validateInteger(scanner.nextLine());
-            return menuNumber;
+            return InputValidator.validateMenuNumber(scanner.nextLine());
         }catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputPaymentOrReserve();
@@ -85,13 +84,15 @@ public class InputView {
         }
     }
 
-//    public static int inputPayment() {
-//        try {
-//
-//        }catch (IllegalArgumentException e) {
-//
-//        }
-//    }
+    public static int inputPaymentType() {
+        try {
+            System.out.println(INPUT_PAYMENT_TYPE_MESSAGE);
+            return InputValidator.validateMenuNumber(scanner.nextLine());
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputPaymentType();
+        }
+    }
 
 
 }
