@@ -20,11 +20,18 @@ public class PlaySchedule {
         return capacity == ZERO;
     }
 
-    public void checkCapacityRange(int personnel) {
+    public void reduceCapacity(int personnel) {
+        checkCapacityRange(personnel);
+        capacity -= personnel;
+    }
+
+    private void checkCapacityRange(int personnel) {
         if (capacity < personnel || personnel < MIN_PERSONNEL) {
             throw new IllegalArgumentException(PERSONNEL_RANGE_ERROR);
         }
     }
+
+
 
     @Override
     public String toString() {

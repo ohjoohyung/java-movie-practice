@@ -12,6 +12,7 @@ public class InputView {
     private static final String INPUT_MOVIE_ID_MESSAGE = "## 예약할 영화를 선택하세요.";
     private static final String INPUT_MOVIE_TIME_INDEX_MESSAGE = "## 예약할 시간표를 선택하세요. (첫번째 상영 시간이 1번)";
     private static final String INPUT_PERSONNEL_MESSAGE = "## 예약할 인원을 입력하세요.";
+    private static final String INPUT_PAYMENT_OR_RESERVE = "## 예약을 종료하고 결제를 진행하면 1번, 추가 예약을 진행하려면 2번";
 
     public static Movie inputMovieId() {
         try {
@@ -47,7 +48,17 @@ public class InputView {
             System.out.println(e.getMessage());
             return inputPersonnel(movie, index);
         }
+    }
 
+    public static int inputPaymentOrReserve() {
+        try {
+            System.out.println(INPUT_PAYMENT_OR_RESERVE);
+            int menuNumber = InputValidator.validateInteger(scanner.nextLine());
+            return menuNumber;
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputPaymentOrReserve();
+        }
     }
 
 
