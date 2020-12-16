@@ -11,7 +11,6 @@ public class InputView {
 
 
     public static int inputMovieId() {
-
         try {
             System.out.println(INPUT_MOVIE_ID_MESSAGE);
             int moveId = InputValidator.validateInteger(scanner.nextLine());
@@ -21,8 +20,5 @@ public class InputView {
             System.out.println(e.getMessage());
             return inputMovieId();
         }
-
-
-
     }
 }

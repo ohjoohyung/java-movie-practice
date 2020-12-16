@@ -10,10 +10,16 @@ public class MovieApplication {
     public static void main(String[] args) {
         List<Movie> movies = MovieRepository.getMovies();
         OutputView.printMovies(movies);
-        int moveId = InputView.inputMovieId();
+        run(movies);
+
 
 
         // TODO 구현 진행
+    }
+
+    private static void run(List<Movie> movies) {
+        int movieId = InputView.inputMovieId();
+        OutputView.printMovieByMovieId(movies, movieId);
     }
 
 }
