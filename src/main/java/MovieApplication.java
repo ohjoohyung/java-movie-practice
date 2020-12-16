@@ -1,7 +1,7 @@
-import domain.Customer;
+import domain.Reservation;
 import domain.Movie;
 import domain.MovieRepository;
-import utils.InputValidator;
+import domain.Payment;
 import view.InputView;
 import view.OutputView;
 
@@ -15,12 +15,13 @@ public class MovieApplication {
 
 
 
+
         // TODO 구현 진행
     }
 
     private static void run() {
         int menuNumber;
-        List<Customer> customers = new ArrayList<>();
+        List<Reservation> customers = new ArrayList<>();
         do {
             List<Movie> movies = MovieRepository.getMovies();
             OutputView.printMovies(movies);
@@ -28,9 +29,9 @@ public class MovieApplication {
             OutputView.printMovie(movie);
             int movieTimeIndex = InputView.inputMovieTimeIndex(movie);
             int personnel = InputView.inputPersonnel(movie, movieTimeIndex);
-            customers.add(new Customer(movie, movieTimeIndex, personnel));
+            customers.add(new Reservation(movie, movieTimeIndex, personnel));
             menuNumber = InputView.inputPaymentOrReserve();
         }while (menuNumber == RESERVE_MORE);
+        Payment.pay(customers);
     }
-
 }

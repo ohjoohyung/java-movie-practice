@@ -59,6 +59,10 @@ public class Movie {
         }
     }
 
+    public int calculateMoviePrice(int personnel) {
+        return price * personnel;
+    }
+
 
     @Override
     public String toString() {
