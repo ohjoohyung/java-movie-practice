@@ -2,6 +2,7 @@ package view;
 
 import domain.Movie;
 import domain.Reservation;
+import domain.Reservations;
 
 import java.util.List;
 
@@ -20,8 +21,8 @@ public class OutputView {
         System.out.println(movie);
     }
 
-    public static void printReservationList(List<Reservation> reservations) {
-        for (Reservation reservation : reservations) {
+    public static void printReservationList(Reservations reservations) {
+        for (Reservation reservation : reservations.getReservations()) {
             System.out.println(RESERVATION_MESSAGE);
             System.out.println(reservation);
         }

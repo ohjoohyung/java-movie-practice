@@ -28,8 +28,8 @@ public class PlaySchedule {
         capacity -= personnel;
     }
 
-    private void checkCapacityRange(int personnel) {
-        if (capacity < personnel || personnel < MIN_PERSONNEL) {
+    public void checkCapacityRange(int customerCount) {
+        if (capacity < customerCount || customerCount < MIN_PERSONNEL) {
             throw new IllegalArgumentException(PERSONNEL_RANGE_ERROR);
         }
     }
@@ -42,6 +42,10 @@ public class PlaySchedule {
 
     public LocalDateTime getStartDateTime() {
         return startDateTime;
+    }
+
+    public boolean isWithInOneHour(PlaySchedule newPlaySchedule) {
+        return DateTimeUtils.isOneHourWithinRange(startDateTime, newPlaySchedule.startDateTime);
     }
 
 

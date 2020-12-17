@@ -28,14 +28,16 @@ public class InputView {
         }
     }
 
-    public static PlaySchedule inputMovieTimeIndex(Movie movie) {
+    public static PlaySchedule inputPlayScheduleIndex(Movie movie, Reservations reservations) {
         try {
             System.out.println(INPUT_MOVIE_TIME_INDEX_MESSAGE);
             int movieIndex = InputValidator.validateInteger(scanner.nextLine());
+            PlaySchedule playSchedule = movie.findPlayScheduleByIndex(movieIndex);
+            reservations.checkReservationsPlaySchedule(playSchedule);
             return movie.findPlayScheduleByIndex(movieIndex);
         }catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return inputMovieTimeIndex(movie);
+            return inputPlayScheduleIndex(movie, reservations);
         }
     }
 
@@ -44,15 +46,15 @@ public class InputView {
     }
 
 
-    public static int inputPersonnel(Movie movie, int index) {
+    public static int inputCustomerCount(PlaySchedule playSchedule) {
         try {
             System.out.println(INPUT_PERSONNEL_MESSAGE);
-            int personnel = InputValidator.validateInteger(scanner.nextLine());
-            movie.checkPlayScheduleCapacityByIndex(index, personnel);
-            return personnel;
+            int customerCount = InputValidator.validateInteger(scanner.nextLine());
+            playSchedule.checkCapacityRange(customerCount);
+            return customerCount;
         }catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return inputPersonnel(movie, index);
+            return inputCustomerCount(playSchedule);
         }
     }
 
