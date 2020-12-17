@@ -28,18 +28,14 @@ public class InputView {
         }
     }
 
-    public static int inputMovieTimeIndex(Movie movie, List<Reservation> reservations) {
+    public static PlaySchedule inputMovieTimeIndex(Movie movie) {
         try {
             System.out.println(INPUT_MOVIE_TIME_INDEX_MESSAGE);
             int movieIndex = InputValidator.validateInteger(scanner.nextLine());
-            movie.checkPlayScheduleIndex(movieIndex);
-
-
-
-            return movieIndex;
+            return movie.findPlayScheduleByIndex(movieIndex);
         }catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return inputMovieTimeIndex(movie, reservations);
+            return inputMovieTimeIndex(movie);
         }
     }
 

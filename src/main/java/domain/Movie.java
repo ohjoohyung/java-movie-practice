@@ -36,6 +36,12 @@ public class Movie {
         return this.id == movieId;
     }
 
+    public PlaySchedule findPlayScheduleByIndex(int index) {
+        if (index > playSchedules.size() || index < MIN_INDEX) {
+            throw new IllegalArgumentException(INDEX_RANGE_ERROR);
+        }
+        return playSchedules.get(index - 1);
+    }
 
     public void checkPlayScheduleIndex(int index) {
         checkPlayScheduleIndexRange(index);

@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MovieReservationProgram {
-    private static final int RESERVE_MORE = 2;
 
     private final List<Movie> movies;
 
@@ -21,7 +20,7 @@ public class MovieReservationProgram {
             OutputView.printMovies(movies);
             Movie movie = InputView.inputMovieId();
             OutputView.printMovie(movie);
-            int movieTimeIndex = InputView.inputMovieTimeIndex(movie, reservations);
+            PlaySchedule playSchedule = InputView.inputMovieTimeIndex(movie);
             int personnel = InputView.inputPersonnel(movie, movieTimeIndex);
             reservations.add(new Reservation(movie, movieTimeIndex, personnel));
             actionType = InputView.inputPaymentOrReserve();
