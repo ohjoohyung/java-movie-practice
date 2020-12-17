@@ -20,7 +20,6 @@ public class Reservation {
     public void reducePriceByPoint(int point) {
         int moviePrice = getMoviePrice();
         checkPointRange(point, moviePrice);
-
     }
 
     private void checkPointRange(int point, int moviePrice) {
@@ -28,6 +27,10 @@ public class Reservation {
             throw new IllegalArgumentException(POINT_RANGE_ERROR);
         }
     }
+
+//    public void compareTime(LocalDateTime newMovieTime) {
+//        int reservationTime = movie.
+//    }
 
     @Override
     public String toString() {

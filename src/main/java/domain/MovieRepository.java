@@ -54,11 +54,9 @@ public class MovieRepository {
     }
 
     public static Movie getMovieByMovieId(int movieId) {
-        for (Movie movie : movies) {
-            if (movie.isMovieId(movieId)) {
-                return movie;
-            }
-        }
-        throw new IllegalArgumentException(NOT_EXIST_MOVIE_ID_ERROR);
+        return movies.stream()
+                .filter(movie -> movie.isMovieId(movieId))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(NOT_EXIST_MOVIE_ID_ERROR));
     }
 }

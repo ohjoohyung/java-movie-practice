@@ -17,29 +17,36 @@ public class InputView {
     private static final String INPUT_PAYMENT_OR_RESERVE_MESSAGE = "## 예약을 종료하고 결제를 진행하면 1번, 추가 예약을 진행하려면 2번";
     private static final String INPUT_POINT_MESSAGE = "## 포인트 사용 금액을 입력하세요. 포인트가 없으면 0 입력";
     private static final String INPUT_PAYMENT_TYPE_MESSAGE = "## 신용카드는 1번, 현금은 2번";
+
     public static Movie inputMovieId() {
         try {
             System.out.println(INPUT_MOVIE_ID_MESSAGE);
-            int movieId = InputValidator.validateInteger(scanner.nextLine());
-            MovieService.validateMovieId(movieId);
-            return MovieRepository.getMovieByMovieId(movieId);
+            return MovieRepository.getMovieByMovieId(InputValidator.validateInteger(scanner.nextLine()));
         }catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputMovieId();
         }
     }
 
-    public static int inputMovieTimeIndex(Movie movie) {
+    public static int inputMovieTimeIndex(Movie movie, List<Reservation> reservations) {
         try {
             System.out.println(INPUT_MOVIE_TIME_INDEX_MESSAGE);
             int movieIndex = InputValidator.validateInteger(scanner.nextLine());
             movie.checkPlayScheduleIndex(movieIndex);
+
+
+
             return movieIndex;
         }catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
-            return inputMovieTimeIndex(movie);
+            return inputMovieTimeIndex(movie, reservations);
         }
     }
+
+    public static void compareReservationTime(int movieIndex, List<Reservation> reservations) {
+
+    }
+
 
     public static int inputPersonnel(Movie movie, int index) {
         try {
@@ -53,10 +60,10 @@ public class InputView {
         }
     }
 
-    public static int inputPaymentOrReserve() {
+    public static ActionType inputPaymentOrReserve() {
         try {
             System.out.println(INPUT_PAYMENT_OR_RESERVE_MESSAGE);
-            return InputValidator.validateMenuNumber(scanner.nextLine());
+            return ActionType.of(scanner.nextLine());
         }catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputPaymentOrReserve();
