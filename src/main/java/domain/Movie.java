@@ -43,15 +43,6 @@ public class Movie {
     }
 
 
-
-
-
-
-    public void checkPlayScheduleIndex(int index) {
-        checkPlayScheduleIndexRange(index);
-        checkPlayScheduleCapacityByIndex(index);
-    }
-
     private void checkPlayScheduleIndexRange(int index) {
         if (index < MIN_INDEX || index > playSchedules.size()) {
             throw new IllegalArgumentException(INDEX_RANGE_ERROR);
@@ -65,48 +56,14 @@ public class Movie {
         }
     }
 
-    private void checkReservationTime(int index) {
-        PlaySchedule playSchedule = playSchedules.get(index - 1);
-        LocalDateTime newMovieTime = playSchedule.getStartDateTime();
-        playSchedule.compareTime(newMovieTime);
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void checkPlayScheduleCapacityByIndex(int index, int personnel) {
-        PlaySchedule playSchedule = playSchedules.get(index - 1);
-        playSchedule.reduceCapacity(personnel);
-    }
-
-
-    public void checkPlayScheduleCapacity() {
-        int playScheduleCount = playSchedules.size();
-        for (PlaySchedule playSchedule : playSchedules) {
-            if (playSchedule.isCapacityZero()) {
-                playScheduleCount--;
-            }
-        }
-        if (playScheduleCount == ZERO) {
-            throw new IllegalArgumentException(ALL_PLAY_SCHEDULE_CAPACITY_ZERO_ERROR);
-        }
-    }
 
     public int calculateMoviePrice(int personnel) {
         return price * personnel;
     }
 
-    public String getMovieInfo(int movieTimeIndex, int personnel) {
-        return id + " - " + name + ", " + price + "원" + NEW_LINE
-                + playSchedules.get(movieTimeIndex - 1)
-                + "예약 인원: " + personnel+ "명" + NEW_LINE;
+    public String getMovieInfo() {
+        return id + " - " + name + ", " + price + "원" + NEW_LINE;
     }
-
-//    public void check
-
-
-
 
     @Override
     public String toString() {

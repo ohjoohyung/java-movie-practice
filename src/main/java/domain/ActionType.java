@@ -4,7 +4,8 @@ import java.util.Arrays;
 
 public enum ActionType {
     PAY("1"),
-    RESERVE("2");
+    RESERVE("2"),
+    START("3");
 
     private String text;
     private static final String MENU_ERROR = "잘못 입력하셨습니다.";

@@ -14,8 +14,6 @@ public class MovieApplication {
         movieReservationProgram.run();
 
 
-
-
         // TODO 구현 진행
     }
 

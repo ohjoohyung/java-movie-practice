@@ -23,9 +23,8 @@ public class PlaySchedule {
         return capacity == ZERO;
     }
 
-    public void reduceCapacity(int personnel) {
-        checkCapacityRange(personnel);
-        capacity -= personnel;
+    public void reduceCapacity(int customerCount) {
+        capacity -= customerCount;
     }
 
     public void checkCapacityRange(int customerCount) {

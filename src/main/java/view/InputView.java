@@ -3,14 +3,11 @@ package view;
 import domain.*;
 import utils.InputValidator;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
 
-    private static final int ZERO = 0;
-    private static final String POINT_RANGE_ERROR = "[ERROR] 포인트가 0보다 작거나 금액보다 큽니다.";
     private static final String INPUT_MOVIE_ID_MESSAGE = "## 예약할 영화를 선택하세요.";
     private static final String INPUT_MOVIE_TIME_INDEX_MESSAGE = "## 예약할 시간표를 선택하세요. (첫번째 상영 시간이 1번)";
     private static final String INPUT_PERSONNEL_MESSAGE = "## 예약할 인원을 입력하세요.";
@@ -41,10 +38,6 @@ public class InputView {
         }
     }
 
-    public static void compareReservationTime(int movieIndex, List<Reservation> reservations) {
-
-    }
-
 
     public static int inputCustomerCount(PlaySchedule playSchedule) {
         try {
@@ -68,11 +61,11 @@ public class InputView {
         }
     }
 
-    public static int inputPoint(List<Reservation> reservations) {
+    public static int inputPoint(Reservations reservations) {
         try {
             System.out.println(INPUT_POINT_MESSAGE);
             int point = InputValidator.validateInteger(scanner.nextLine());
-            checkPointRange(point, reservations);
+            reservations.checkPointWithInRange(point);
             return point;
         }catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
@@ -80,19 +73,10 @@ public class InputView {
         }
     }
 
-    private static void checkPointRange(int point, List<Reservation> reservations) {
-        int moviePrice = reservations.stream()
-                .mapToInt(Reservation::getMoviePrice)
-                .sum();
-        if (point < ZERO || point > moviePrice) {
-            throw new IllegalArgumentException(POINT_RANGE_ERROR);
-        }
-    }
-
-    public static int inputPaymentType() {
+    public static PayType inputPaymentType() {
         try {
             System.out.println(INPUT_PAYMENT_TYPE_MESSAGE);
-            return InputValidator.validateMenuNumber(scanner.nextLine());
+            return PayType.of(scanner.nextLine());
         }catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
             return inputPaymentType();
